@@ -10,6 +10,7 @@ const csv = require('csv-parser');
 //1. Write a script that extracts and lists Name and FavoriteFridge1.
 const extractNameAndFavoriteFridge1 = () => {
 
+// array of objects
 const results = [];
 
 fs.createReadStream('fileA.csv')
@@ -25,6 +26,8 @@ fs.createReadStream('fileA.csv')
     const outputString = output.join('\n'); // Join the array elements with newline characters
     const header = '***************Task 1****************\n';
 
+
+    // appendFile allows us to add to the file whereas writeFile will rewrite entire file, deleting previous data 
     fs.appendFile('fileB.csv', header + outputString, (err) => {
         if (err) {
           console.error(err);
@@ -39,6 +42,8 @@ fs.createReadStream('fileA.csv')
 
 // 2. Write a script that will extract and list Jill, Candice, and Alycia’s items and create a column for total cost.
 const extractItemsAndTotalCost = () => {
+
+  // map is beneficial to extract data & efficient lookup which we will have to do via name as key
     const results = new Map();
 
     fs.createReadStream('fileA.csv')
@@ -108,7 +113,7 @@ const updateCSV = () => {
             console.error(err);
             return;
           }
-          console.log('Task 3 - updated! Results saved to fileB.csv');
+          console.log('Task 3 complete! Updated results saved to fileB.csv');
         });
       });
     }
